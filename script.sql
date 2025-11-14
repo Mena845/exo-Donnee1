@@ -12,3 +12,6 @@ select contract_type , count(*) as number_Employee from Employee  group by contr
 
 -- 5: nombre d’employés en congé aujourd’hui
 select count (distinct e.id_Employee) as Employee_leave_today from Employee e inner join Leave l on e.id_Leave = l.id_Leave where current_date between l.start_date and l.end_date;
+
+-- 6:id, le nom, le prénom de tous les employés + le nom de leur équipe qui sont en congé aujourd’hui
+select e.id_Employee , e.first_name , e.last_name , t.name_Team from Employee e inner join Team t on e.id_Team = t.id_Team inner join Leave l  on e.id_Leave = l.id_Leave where current_date between l.start_date and l.end_date;
